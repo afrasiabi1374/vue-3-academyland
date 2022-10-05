@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <HelloWorld @clickCustomButton="clickedButton" loading="false" msg="Welcome to Your Vue.js + TypeScript App Ali Afrasiabi"/>
   </div>
 </template>
 
@@ -14,5 +14,11 @@ export default defineComponent({
   components: {
     HelloWorld,
   },
+  methods: {
+    clickedButton(val:string){
+      console.log('emit message => ',val)
+      
+    }
+  }
 });
 </script>
