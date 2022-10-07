@@ -2,22 +2,39 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld @clickCustomButton="clickedButton" loading="false" msg="Welcome to Your Vue.js + TypeScript App Ali Afrasiabi"/>
+    <Lifecycle />
+    <NumberPicker :value="counter" @change="changeNumberPicker"/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue';
+import Lifecycle from '@/components/Lifecycle.vue';
+import NumberPicker from '@/components/NumberPicker.vue'; // @ is an alias to /src
 
 export default defineComponent({
   name: 'HomeView',
   components: {
     HelloWorld,
-  },
+    Lifecycle,
+    NumberPicker
+},
   methods: {
-    clickedButton(val:string){
+    clickedButton (val:string) {
       console.log('emit message => ',val)
-      
+    },
+    onValueChange (value: number) {
+      console.log(value)
+    },
+    changeNumberPicker (value: number) {
+      this.counter = value
+      console.log(this.counter)
+    }
+  },
+  data () {
+    return {
+      counter: 0
     }
   }
 });
