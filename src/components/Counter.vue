@@ -1,13 +1,17 @@
 <template>
     <div>
         <h1>counter in composition</h1>
-        <button @click="minus">-</button>
+        <button @click="minus"> - </button>
+            <br/>
             state : {{ state.counter }}
-        <button @click="plus">+</button>
+            <br/>
+            counter2 : {{ counter2 }}
+            <br/>
+        <button @click="plus"> + </button>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, reactive, ref, computed } from 'vue';
 export default defineComponent({
     name: 'CounterComponent',
     setup(props) {
@@ -21,11 +25,13 @@ export default defineComponent({
         const state = reactive({
             counter: 1
         })
+        const counter2 = computed(() => state.counter*2)
         return {
             counter,
             plus,
             minus,
-            state
+            state,
+            counter2
         }
     }
 })
