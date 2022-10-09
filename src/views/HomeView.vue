@@ -6,6 +6,7 @@
     <NumberPicker
       v-model="counter"
     />
+    <Counter />
   </div>
 </template>
 
@@ -13,14 +14,16 @@
 import { defineComponent } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue';
 import Lifecycle from '@/components/Lifecycle.vue';
-import NumberPicker from '@/components/NumberPicker.vue'; // @ is an alias to /src
+import NumberPicker from '@/components/NumberPicker.vue';
+import Counter from '@/components/Counter.vue'
 
 export default defineComponent({
   name: 'HomeView',
   components: {
     HelloWorld,
     Lifecycle,
-    NumberPicker
+    NumberPicker,
+    Counter
 },
   methods: {
     clickedButton (val:string) {
