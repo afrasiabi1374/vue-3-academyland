@@ -2,7 +2,7 @@
     <div>
     <h2>Number picker</h2>
         <button @click="plus">+</button>
-        {{ value }}
+        {{ modelValue }}
         <button @click="minus">-</button>
     </div>
 </template>
@@ -10,22 +10,27 @@
     import {defineComponent} from 'vue'
     export default defineComponent({
         props: {
-            value:{
+            modelValue:{
                 type: Number,
                 default: 0
             }
         },
-        emits: ['change'],
-        methods: {
-            plus () {
-                this.$emit('change', this.value + 1)
-            },
-            minus () {
-                if (this.value !== 0) {
-                    this.$emit('change', this.value - 1)
+        emits: ['update:modelValue'],
+        setup(props, {emit}) {
+            const plus = () => {
+                emit("update:modelValue", props.modelValue+1)
+            }
+            const minus = () => {
+                if (props.modelValue !== 0) {
+                    emit("update:modelValue", props.modelValue-1)
                 }
-            },
+            }
+            return {
+                plus,
+                minus
+            }
         }
+
     })
 </script>
 <style lang="scss" scoped>

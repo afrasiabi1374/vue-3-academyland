@@ -3,7 +3,9 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld @clickCustomButton="clickedButton" loading="false" msg="Welcome to Your Vue.js + TypeScript App Ali Afrasiabi"/>
     <Lifecycle />
-    <NumberPicker :value="counter" @change="changeNumberPicker"/>
+    <NumberPicker
+      v-model="counter"
+    />
   </div>
 </template>
 
@@ -26,10 +28,6 @@ export default defineComponent({
     },
     onValueChange (value: number) {
       console.log(value)
-    },
-    changeNumberPicker (value: number) {
-      this.counter = value
-      console.log(this.counter)
     }
   },
   data () {
