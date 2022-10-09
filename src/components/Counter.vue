@@ -11,21 +11,24 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, computed } from 'vue';
+import { defineComponent, reactive, ref, computed, watch } from 'vue';
 export default defineComponent({
     name: 'CounterComponent',
     setup(props) {
         const counter = ref(0)
         const plus = () => {
-            state.counter++
+            counter.value++
         }
         const minus = () => {
-            state.counter--
+            counter.value--
         }
         const state = reactive({
             counter: 1
         })
         const counter2 = computed(() => state.counter*2)
+        watch(counter, (value, oldValue) => {
+            console.log(`new ${value}`, `oldValue ${oldValue}`)
+        })
         return {
             counter,
             plus,
