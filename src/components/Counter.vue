@@ -3,7 +3,7 @@
         <h1>counter in composition</h1>
         <button @click="minus"> - </button>
             <br/>
-            state : {{ state.counter }}
+            state : {{ counter }}
             <br/>
             counter2 : {{ counter2 }}
             <br/>
@@ -11,7 +11,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, reactive, ref, computed, watch } from 'vue';
+import { defineComponent, reactive, ref, computed, watch, watchEffect } from 'vue';
 export default defineComponent({
     name: 'CounterComponent',
     setup(props) {
@@ -25,9 +25,16 @@ export default defineComponent({
         const state = reactive({
             counter: 1
         })
-        const counter2 = computed(() => state.counter*2)
+        const counter2 = computed(() => counter.value*2)
+        // watch(()=>state.counter, (value, oldValue) => {
+        //     console.log(`new ${value}`, `oldValue ${oldValue}`)
+        // })
         watch(counter, (value, oldValue) => {
             console.log(`new ${value}`, `oldValue ${oldValue}`)
+        })
+        console.log('counter in setup', counter.value)
+        watchEffect(() => {
+            console.log('watch effect', counter.value) 
         })
         return {
             counter,
