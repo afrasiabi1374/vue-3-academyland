@@ -7,6 +7,17 @@
       v-model="counter"
     />
     <Counter />
+    <Card>
+      <template #default>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, harum ipsum voluptate in assumenda ab corporis, officia porro quis, iste maiores rem ex magnam voluptas ipsa earum dignissimos laboriosam nam!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus cum aut impedit vel et? Voluptatibus eveniet asperiores atque magnam amet alias tenetur labore illum, modi consequuntur neque optio eius ipsa?
+      </template>
+      <template #actionButtons="{counter}">
+        counter: {{counter}}
+        <button>ثبت</button>
+        <button>جزییات</button>
+      </template>
+    </Card>
   </div>
 </template>
 
@@ -16,6 +27,7 @@ import HelloWorld from '@/components/HelloWorld.vue';
 import Lifecycle from '@/components/Lifecycle.vue';
 import NumberPicker from '@/components/NumberPicker.vue';
 import Counter from '@/components/Counter.vue'
+import Card from '../components/Card.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -23,7 +35,8 @@ export default defineComponent({
     HelloWorld,
     Lifecycle,
     NumberPicker,
-    Counter
+    Counter,
+    Card
 },
   methods: {
     clickedButton (val:string) {
