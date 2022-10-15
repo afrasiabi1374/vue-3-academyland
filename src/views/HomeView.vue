@@ -18,16 +18,19 @@
         <button>جزییات</button>
       </template>
     </Card>
+    <br><br><br>
+    <UserCard></UserCard>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, provide, reactive, readonly } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue';
 import Lifecycle from '@/components/Lifecycle.vue';
 import NumberPicker from '@/components/NumberPicker.vue';
 import Counter from '@/components/Counter.vue'
 import Card from '../components/Card.vue'
+import UserCard from '../components/UserCard.vue'
 
 export default defineComponent({
   name: 'HomeView',
@@ -36,7 +39,8 @@ export default defineComponent({
     Lifecycle,
     NumberPicker,
     Counter,
-    Card
+    Card,
+    UserCard
 },
   methods: {
     clickedButton (val:string) {
@@ -49,6 +53,15 @@ export default defineComponent({
   data () {
     return {
       counter: 0
+    }
+  },
+  setup () {
+    const userInfo = reactive({ firstname: 'علی', lastname: 'اکبری' })
+    provide('user-info', readonly(userInfo))
+    provide('edit-info', (firstName:string) => {
+      userInfo.firstname = firstName
+    })
+    return {
     }
   }
 });
